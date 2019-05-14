@@ -41,7 +41,7 @@ class Command(BaseCommand):
         (err, xtags, stder) = utils.run(self.get_tags_cmd, cwd=self.clone_path)
         ytags = xtags.splitlines()
         #tags = list(filter(lambda x: x != self.db_ltag,ytags))
-        tags = [ x for x in ytags if not (self.db_ltag in x)]
+        tags = [ x for x in ytags if not (self.db_ltag in x) or 'LATEST' not in x]
         if tags:
             if self.dry_run:
                 self.opt.p_bold("tags_cmd : %s" % self.get_tags_cmd)
