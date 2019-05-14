@@ -19,6 +19,7 @@ class Command(BaseCommand):
         parser.add_argument('-b', '--branch', type=str, help='Provide branch name', default='master')
         parser.add_argument('-c', '--clone_path',type=str, help='Provide path to clone git repo',required=True)
         parser.add_argument('-d', '--dry_run', type=int, help='dry run default it is on', default=1)
+        parser.add_argument('-l', '--last-tag', type=str, help='Provide last tag')
 
     def __init__(self, *args, **kwargs):
         super(Command,self).__init__(*args, **kwargs)
@@ -154,9 +155,11 @@ class Command(BaseCommand):
         self.branch = kwargs['branch']
         self.dry_run = kwargs['dry_run']
         self.opt = ColorPrint()
-        #ltag_id = Tag.objects.latest('id')
-        #ltag = Tag.object.get(id=ltag_id)
-        self.db_ltag = "rel_191-20190427.3"
+        if not kwargs['last_tag'] :
+            self.db_ltag = Tag.objects.latest('tag_name')
+        else :
+            self.db_ltag =  kwargs['last_tag']
+
         self.checkout_cmd = "git checkout " + self.branch
         self.clone_cmd = "git clone evogit:csets/evo-csets" + self.clone_path
         self.get_tags_cmd = "git tag -l v/"+self.branch+"/* --contains v/"+self.branch+"/"+self.db_ltag
