@@ -162,7 +162,7 @@ class Command(BaseCommand):
 
         self.checkout_cmd = "git checkout " + self.branch
         self.clone_cmd = "git clone evogit:csets/evo-csets" + self.clone_path
-        self.get_tags_cmd = "git tag -l v/"+self.branch+"/* --contains "+self.db_ltag
+        self.get_tags_cmd = "git tag -l v/"+self.branch+"/* --contains "+self.db_ltag+" |grep -v LATEST"
         self.opt.p_pass("WORKSPACE : %s" % self.clone_path)
         self._checkout_branch()
         self._update_db()
