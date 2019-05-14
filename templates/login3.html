@@ -1,0 +1,16 @@
+{% extends 'base_accounts.html' %}
+
+{% block title %}Log in to Django Boards{% endblock %}
+
+{% block content %}
+
+
+<div class="bg-img">
+        <form action="/action_page.php" class="container">
+          <h1>Login</h1>
+          <label for="email"><b>USER NAME::{{ form.username}}</b></label>
+          <label for="psw"><b>PASSWD   ::{{ form.password }}</b></label>
+          <button type="submit" class="btn">Login</button>
+        </form>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}HOME{% endblock %}
+
+{% block stylesheet %}{% endblock %}
+{% block breadcrumb %}
+<ol class="breadcrumb my-4"> 
+  <li class="breadcrumb-item active"><a href="{% url 'list_branches'%}">PR details</a> </li>
+</ol> 
+{% endblock %}
+
+{% block content %}
+<table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Branches</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for branch in branches %}
+          <tr>
+            <td>
+              <a href="{% url 'branch_list_tags' branch.pk  %}">{{ branch.name }} </a> 
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+{% endblock %}

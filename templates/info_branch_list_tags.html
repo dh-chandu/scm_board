@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}HOME{% endblock %}
+
+{% block stylesheet %}{% endblock %}
+{% block breadcrumb %}
+<ol class="breadcrumb my-4">
+<li class="breadcrumb-item"><a href="{% url 'list_branches'%}">PR details</a> </li>
+<li class="breadcrumb-item"><a href="{% url 'branch_list_tags' branch.pk  %}">{{ branch }} </a></li>
+</ol>
+{% endblock %}
+
+{% block content %}
+<div class="pagination">
+<table class="table">
+  <thead>
+    <tr>
+        <th rowspan="2">TAG</th>
+        <th colspan="2">PR details</th>
+    </tr>
+    <tr>
+        <th>PR</th>
+        <th>status</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{ table_body }}
+  </tbody>
+  </table>
+</div>
+{% endblock %}
